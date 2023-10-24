@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  
+  # Set the root route to flights' index action
+  root 'flights#index' 
+  # This sets up the /flights route
+  resources :flights, only: [:index] 
 end
