@@ -1,0 +1,32 @@
+
+<!-- shared/_search.html.erb -->
+
+<%= form_with url: flights_path, method: :get, local: true do |form| %>
+  <div class="search-form">
+    <div class="field">
+      <%= form.label :departure_airport_id, "From:" %>
+      <%= form.select :departure_airport_id, options_from_collection_for_select(airports, :id, :name,@selected_departure_airport_id), include_blank: true %>
+    </div>
+    
+    <div class="field">
+      <%= form.label :arrival_airport_id, "To:" %>
+      <%= form.select :arrival_airport_id, options_from_collection_for_select(airports, :id, :name, @selected_arrival_airport_id), include_blank: true %>
+    </div>
+    
+    <div class="field">
+      <%= form.label :start_datetime, "Departure Date:" %>
+      <%= form.select :start_datetime, @available_dates.map { |date| [date.strftime('%B %d, %Y'), date] }, { selected: @selected_start_datetime, prompt: 'Select a date'} %>        
+    </div>
+
+    <div class="field">
+      <%= form.label :passengers, "Passengers:" %>
+      <%= form.select :passengers, (1..10).to_a, { selected: @passengers_selected, prompt: "Select number" } %>
+    </div>
+    
+    <div class="actions">
+      <%= form.submit "Search" %>
+    </div>
+  </div>
+<% end %>
+
+

@@ -1,0 +1,29 @@
+<!-- flights/_results.html.erb -->
+<% if @flights.any? %>
+  <h2>Available Flights:</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Departure Airport</th>
+        <th>Arrival Airport</th>
+        <th>Departure Date</th>
+        <th>Duration</th>
+        <!-- other table headers -->
+      </tr>
+    </thead>
+    <tbody>
+      <% @flights.each do |flight| %>
+        <tr>
+          <td><%= flight.departure_airport.name %></td>
+          <td><%= flight.arrival_airport.name %></td>
+          <td><%= flight.start_datetime.strftime("%B %d, %Y %H %M %p") %></td>
+          <td><%= flight.duration %> minutes</td>
+          <!-- other table data -->
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No flights match your search criteria.</p>
+<% end %>
+

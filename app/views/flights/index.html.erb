@@ -1,2 +1,40 @@
-<h1>Flights#index</h1>
-<p>Find me in app/views/flights/index.html.erb</p>
+<!-- Header for the flights index page -->
+<div class="relative isolate h-96 overflow-hidden bg-gray-900 py-24 sm:py-32">
+  <%= image_tag "airplane_hero.png", class: "absolute inset-0 -z-10 h-full w-full object-cover object-center md:object-center" %>
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:mx-0">
+      <h2 class="text-4xl font-bold tracking-tight text-red-600 sm:text-6xl">Drongo Flights!</h2>
+      <p class="mt-6 text-lg leading-8 text-white">Fly with your flip-flops all day everyday</p>
+    </div>
+    <div class="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
+      <div class="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
+        <a href="#">Open roles <span aria-hidden="true">&rarr;</span></a>
+        <a href="#">Internship program <span aria-hidden="true">&rarr;</span></a>
+        <a href="#">Our values <span aria-hidden="true">&rarr;</span></a>
+        <a href="#">Meet our leadership <span aria-hidden="true">&rarr;</span></a>
+      </div>
+      <dl class="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="flex flex-col-reverse">
+          <dt class="text-base leading-7 text-gray-300">Offices worldwide</dt>
+          <dd class="text-2xl font-bold leading-9 tracking-tight text-white">12</dd>
+        </div>
+        <div class="flex flex-col-reverse">
+          <dt class="text-base leading-7 text-gray-300">Full-time colleagues</dt>
+          <dd class="text-2xl font-bold leading-9 tracking-tight text-white">300+</dd>
+        </div>
+        <div class="flex flex-col-reverse">
+          <dt class="text-base leading-7 text-gray-300">Hours per week</dt>
+          <dd class="text-2xl font-bold leading-9 tracking-tight text-white">40</dd>
+        </div>
+        <div class="flex flex-col-reverse">
+          <dt class="text-base leading-7 text-gray-300">Paid time off</dt>
+          <dd class="text-2xl font-bold leading-9 tracking-tight text-white">Unlimited</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</div>
+
+<%= render 'shared/search', airports: @airports %>
+
+<%= render 'flights/results' %>

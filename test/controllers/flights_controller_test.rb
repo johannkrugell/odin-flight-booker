@@ -1,8 +1,10 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class FlightsControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get flights_index_url
+  test 'should get index' do
+    get flights_path
     assert_response :success
   end
 end
