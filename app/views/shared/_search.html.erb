@@ -1,6 +1,5 @@
-
 <!-- shared/_search.html.erb -->
-
+<%# Flight Search form %>
 <%= form_with url: flights_path, method: :get, local: true do |form| %>
   <div class="search-form">
     <div class="field">
@@ -20,10 +19,11 @@
 
     <div class="field">
       <%= form.label :passengers, "Passengers:" %>
-      <%= form.select :passengers, (1..10).to_a, { selected: @passengers_selected, prompt: "Select number" } %>
+      <%= form.select :passengers, (1..10).to_a, { selected: @selected_passengers, prompt: "Select number" } %>
+      <%= form.hidden_field :passengers_number, value: params[:passengers] %>      
     </div>
     
-    <div class="actions">
+     <div class="actions">
       <%= form.submit "Search" %>
     </div>
   </div>

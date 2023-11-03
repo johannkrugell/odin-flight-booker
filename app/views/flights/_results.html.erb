@@ -1,29 +1,22 @@
 <!-- flights/_results.html.erb -->
+<%# Check if there are any flights available %>
 <% if @flights.any? %>
   <h2>Available Flights:</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Departure Airport</th>
-        <th>Arrival Airport</th>
-        <th>Departure Date</th>
-        <th>Duration</th>
-        <!-- other table headers -->
-      </tr>
-    </thead>
-    <tbody>
-      <% @flights.each do |flight| %>
-        <tr>
-          <td><%= flight.departure_airport.name %></td>
-          <td><%= flight.arrival_airport.name %></td>
-          <td><%= flight.start_datetime.strftime("%B %d, %Y %H %M %p") %></td>
-          <td><%= flight.duration %> minutes</td>
-          <!-- other table data -->
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= form_tag flights_path, :id => 'result_form', method: :post do %>
+    <%# Display the number of passengers selected %>
+    <p>Number of passengers selected: <%= @selected_passengers %></p>
+    <%# Iterate over each flight and create a radio button and label for it %>
+    <% @flights.each do |flight| %>
+      <div>
+        <%= radio_button_tag :flight_id, flight.id %>
+        <%= label_tag "flight-#{flight.id}", "#{flight.departure_airport.name} to #{flight.arrival_airport.name} on #{flight.start_datetime.strftime("%B %d, %Y %H %M %p")} for #{@selected_passengers} passengers", :id => 'flight'  %>
+      </div>
+    <% end %>
+    <%# Submit button for the form %>
+    <%= submit_tag "Book Selected Flight" %>
+  <% end %>
 <% else %>
+  <%# Display a message if no flights match the search criteria %>
   <p>No flights match your search criteria.</p>
 <% end %>
 
