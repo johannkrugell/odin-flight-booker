@@ -80,3 +80,6 @@ gem 'font-awesome-sass', '~> 6.4.2'
 
 # TailwindCSS
 gem 'tailwindcss-rails', '~> 2.0'
+
+# Debugging gems
+gem 'pry-byebug'

@@ -1,0 +1,22 @@
+<!-- bookings/new.html.erb -->
+<h1>Complete Your Booking</h1>
+
+<%= form_for @booking do |f| %>
+  <%= f.hidden_field :flight_id %>
+  
+  <%= f.fields_for :passengers do |passenger_form| %>
+    <fieldset>
+      <legend>Passenger Details</legend>
+      <%= passenger_form.label :first_name %>
+      <%= passenger_form.text_field :first_name %>
+
+      <%= passenger_form.label :surname %>
+      <%= passenger_form.text_field :surname %>
+
+      <%= passenger_form.label :email %>
+      <%= passenger_form.email_field :email %>
+    </fieldset>
+  <% end %>
+
+  <%= f.submit "Complete Booking" %>
+<% end %>

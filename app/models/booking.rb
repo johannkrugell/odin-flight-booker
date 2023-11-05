@@ -12,5 +12,5 @@ class Booking < ApplicationRecord
   delegate :arrival_airport, to: :flight
 
   # Validations
-  validates :passengers, numericality: { greater_than: 0 }
+  validates :flight_id, presence: true
 end

@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  departure_airport_id: 1
-  arrival_airport_id: 2
+  departure_airport_id: <%= ActiveRecord::FixtureSet.identify(:one) %>
+  arrival_airport_id: <%= ActiveRecord::FixtureSet.identify(:two) %>
   start_datetime: 2023-11-02 08:00:00
   duration: 112
 
 two:
-  departure_airport_id: 2
-  arrival_airport_id: 1
+  departure_airport_id: <%= ActiveRecord::FixtureSet.identify(:two) %>
+  arrival_airport_id: <%= ActiveRecord::FixtureSet.identify(:one) %>
   start_datetime: 2023-11-02 08:00:00
   duration: 112

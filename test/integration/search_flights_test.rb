@@ -31,14 +31,35 @@ class SearchFlightsTest < ActionDispatch::IntegrationTest
 
   # Test that the airports dropdown is populated with airports
   test 'airport dropdown is populated with airports' do
-    visit flights_path
+    visit root_path
 
     within('form') do
-      # Assuming your departure airport select has a label 'Departure airport'
+      # Check for departure airport dropdown
       assert_selector('label[for="departure_airport_id"]')
-      # This will find the select box and check all options against Airport records
+      # Check options in departure airport dropdown
       Airport.all.each do |airport|
-        assert_selector('option', text: airport.name)
+        assert_selector('#departure_airport_id option', text: airport.name)
+      end
+
+      # Check for arrival airport dropdown
+      assert_selector('label[for="arrival_airport_id"]')
+      # Check options in arrival airport dropdown
+      Airport.all.each do |airport|
+        assert_selector('#arrival_airport_id option', text: airport.name)
+      end
+    end
+  end
+
+  # Test that the date dropdown is populated with dates
+  test 'date dropdown is populated with dates' do
+    visit root_path
+
+    within('form') do
+      # Select the date dropdown
+      assert_selector('label[for="start_datetime"]')
+      # This will find the select box and check all options against Flight records
+      Flight.all.each do |flight|
+        assert_selector('option', text: flight.start_datetime.strftime('%B %d, %Y'))
       end
     end
   end

@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   root 'flights#index'
   # This sets up the /flights route
   resources :flights, only: [:index]
+  # This sets up the /bookings route
+  resources :bookings, only: %i[new create show]
 end

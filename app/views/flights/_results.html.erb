@@ -2,9 +2,9 @@
 <%# Check if there are any flights available %>
 <% if @flights.any? %>
   <h2>Available Flights:</h2>
-  <%= form_tag flights_path, :id => 'result_form', method: :post do %>
-    <%# Display the number of passengers selected %>
-    <p>Number of passengers selected: <%= @selected_passengers %></p>
+  <%= form_with url: new_booking_path, method: :get, local: true do |form|  %>
+    <%# Include the selected number of passengers as a hidden field %>
+    <%= hidden_field_tag :num_passengers, @selected_passengers %>
     <%# Iterate over each flight and create a radio button and label for it %>
     <% @flights.each do |flight| %>
       <div>
@@ -13,7 +13,7 @@
       </div>
     <% end %>
     <%# Submit button for the form %>
-    <%= submit_tag "Book Selected Flight" %>
+    <%= form.submit "Book Selected Flight" %>
   <% end %>
 <% else %>
   <%# Display a message if no flights match the search criteria %>
