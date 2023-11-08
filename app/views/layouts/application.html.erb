@@ -9,9 +9,13 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <!-- Google font Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300&family=Inspiration&family=Montserrat&family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">
   </head>
 
-  <body class="bg-gray-900">
+  <body class="m-2 bg-slate-50 rounded">
     <% if flash[:notice] %>
       <div class="bg-green-500 text-white p-4">
         <%= flash[:notice] %>

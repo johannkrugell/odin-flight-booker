@@ -3,6 +3,7 @@
 <p>Flight Details:</p>
 <%# Display flight details %>
 <p><%= @booking.flight.departure_airport.name %> to <%= @booking.flight.arrival_airport.name %></p>
+<p>Departing: <%= @booking.flight.start_datetime.strftime("%d/%m/%Y") %> at <%= @booking.flight.start_datetime.strftime("%H:%M %p") %></p>
 
 <p>Passenger Details:</p>
 <% @booking.passengers.each do |passenger| %>
