@@ -1,12 +1,29 @@
-<h1>Booking Summary</h1>
+<!-- Render navbar -->
+<%= render 'shared/navbar' %>
 
-<p>Flight Details:</p>
-<%# Display flight details %>
-<p><%= @booking.flight.departure_airport.name %> to <%= @booking.flight.arrival_airport.name %></p>
-<p>Departing: <%= @booking.flight.start_datetime.strftime("%d/%m/%Y") %> at <%= @booking.flight.start_datetime.strftime("%H:%M %p") %></p>
+<!-- Display booking -->
+<div class="bg-gray-50 font-montserrat ">
+  <h1 class="font-semibold text-orange-900 text-center mt-2">Booking Summary</h1>
+  
+  <%# Display flight details %>
+  <div class="grid grid-rows-2 m-2">
+    <div class="text-gray-700 m-2">
+      <p class="font-semibold text-orange-900 mt-3">Flight Details:</p>
+      <p><%= @booking.flight.departure_airport.name %> to <%= @booking.flight.arrival_airport.name %></p>
+      <p>Departing: <%= @booking.flight.start_datetime.strftime("%d/%m/%Y") %> at <%= @booking.flight.start_datetime.strftime("%H:%M %p") %></p>
+      <p>Passengers: <%= @booking.passengers.size %></p>
+    </div> 
+    <div class="text-gray-700 m-2">
+      <p class="font-semibold text-orange-900">Passenger Details:</p>
+      <% @booking.passengers.each do |passenger| %>
+        <p>Name: <%= passenger.first_name %> <%= passenger.surname %></p>
+        <p>Email: <%= passenger.email %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<p>Passenger Details:</p>
-<% @booking.passengers.each do |passenger| %>
-  <p>Name: <%= passenger.first_name %> <%= passenger.surname %></p>
-  <p>Email: <%= passenger.email %></p>
-<% end %>
+<!-- Render hero -->
+<div class=" pt-5 lg: h-96 py-24 ">
+  <%= image_tag "airplane_hero.png", class: "lg:absolute inset-0 -z-10 h-full w-full object-cover object-center md:object-center" %>
+</div>

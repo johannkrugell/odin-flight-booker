@@ -1,22 +1,30 @@
 <!-- flights/_results.html.erb -->
 <%# Check if there are any flights available %>
 <% if @flights.any? %>
-  <h2>Available Flights:</h2>
-  <%= form_with url: new_booking_path, method: :get, local: true do |form|  %>
-    <%# Include the selected number of passengers as a hidden field %>
-    <%= hidden_field_tag :num_passengers, @selected_passengers %>
-    <%# Iterate over each flight and create a radio button and label for it %>
-    <% @flights.each do |flight| %>
-      <div>
-        <%= radio_button_tag :flight_id, flight.id %>
-        <%= label_tag "flight-#{flight.id}", "#{flight.departure_airport.name} to #{flight.arrival_airport.name} on #{flight.start_datetime.strftime("%B %d, %Y %H %M %p")} for #{@selected_passengers} passengers", :id => 'flight'  %>
+  <h2 class="font-montserrat text-orange-900 font-semibold text-center bg-gray-100 lg:bg-transparent">Available Flights:</h2>
+  <div class="bg-gray-100 p-6 rounded lg:p-1">
+    <%= form_with url: new_booking_path, method: :get, local: true do |form|  %>
+      <%# Include the selected number of passengers as a hidden field %>
+      <%= hidden_field_tag :num_passengers, @selected_passengers %>
+      <%# Iterate over each flight and create a radio button and label for it %>
+      <% @flights.each do |flight| %>
+        <div class="text-gray-700 text-sm mt-2 lg:mt-1 p-2">
+          <%= radio_button_tag :flight_id, flight.id %>
+          <%= label_tag "flight-#{flight.id}", "#{flight.departure_airport.name} to #{flight.arrival_airport.name} on #{flight.start_datetime.strftime("%B %d, %Y %H %M %p")} 
+            for #{@selected_passengers} passengers", :id => 'flight'  %>
+        </div>
+      <% end %>
+      <%# Submit button for the form %>
+      <div class="max-w-sm bg-orange-900 text-center text-white rounded-md h-10 pt-2 mt-2 lg:m-3">
+        <%= form.submit "Book Selected Flight" %>
       </div>
     <% end %>
-    <%# Submit button for the form %>
-    <%= form.submit "Book Selected Flight" %>
+  </div>
+  <% else %>
+    <%# Display a message if no flights match the search criteria %>
+    <div class="">
+      <p class="font-montserrat text-sm mt-2 bg-gray-100 text-center lg: h-full text-orange-900">No flights match your search criteria.</p>
+    </div>
   <% end %>
-<% else %>
-  <%# Display a message if no flights match the search criteria %>
-  <p>No flights match your search criteria.</p>
-<% end %>
+  
 
