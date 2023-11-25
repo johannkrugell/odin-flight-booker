@@ -16,6 +16,9 @@ class BookingsController < ApplicationController
     @booking = @flight.bookings.build(booking_params)
 
     if @booking.save
+      @booking.passengers.each do |passenger|
+        confirmation_email_saved(passenger)
+      end
       redirect_to booking_path(@booking), notice: 'Booking was successfully created.'
     else
       redirect_to @booking, notice: 'Booking could not be created.'
@@ -24,6 +27,15 @@ class BookingsController < ApplicationController
 
   def show
     @booking = Booking.find(params[:id])
+  end
+
+  def confirmation_email_saved(booking)
+    # Tell the UserMailer to send a welcome email after save
+    PassengerMailer.confirmation_email(booking).deliver_later
+  end
+
+  def confirmation_email_error
+    redirect_to booking_path(@booking), notice: 'Confirmation email could not be sent.'
   end
 
   private
